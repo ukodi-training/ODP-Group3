@@ -15,7 +15,7 @@ var width  = config.map_width,
 // Initialise map projection, in this case mercator.
 // Lots more projection types are listed on https://github.com/mbostock/d3/wiki/Geo-Projections
 
-var projection = d3.geo.equirectangular()
+var projection = d3.geo.azimuthalEqualArea()
                 .translate([410, 260])
                 .scale(140);
 
