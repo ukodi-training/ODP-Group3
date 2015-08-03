@@ -15,7 +15,7 @@ var width  = config.map_width,
 // Initialise map projection, in this case mercator.
 // Lots more projection types are listed on https://github.com/mbostock/d3/wiki/Geo-Projections
 
-var projection = d3.geo.mercator()
+var projection = d3.geo.azimuthalEqualArea()
                 .translate([410, 260])
                 .scale(140);
 
@@ -98,10 +98,16 @@ var country = svg.selectAll(".country").data(countries);
     // Respond to mouse actions
     country
       .on("mousemove", function(d,i) {
+      d3.select(this).style("stroke","red")
+      	.style("stroke-width","1.2px");
+      $('#info').html("<h2>" + d.name + "</h2>Population: <span class='population'>" + 
+      d.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>");
       })
       .on("click", function(d,i) {
       })
       .on("mouseout",  function(d,i) {
+      	d3.select(this).style("stroke","#666")
+      	.style("stroke-width","0.4px");
       });
 
 }
